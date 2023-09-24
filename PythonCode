@@ -1,0 +1,33 @@
+class TechConnects:
+    def __init__(self):
+        self.user_profiles = {}
+
+    def create_user_profile(self, user_id):
+        self.user_profiles[user_id] = {
+            "name": "",
+            "preferred_learning_style": "",
+            "favorite_subject": ""
+        }
+
+    def update_user_profile(self, user_id, name, preferred_learning_style, favorite_subject):
+        if user_id in self.user_profiles:
+            self.user_profiles[user_id]["name"] = name
+            self.user_profiles[user_id]["preferred_learning_style"] = preferred_learning_style
+            self.user_profiles[user_id]["favorite_subject"] = favorite_subject
+
+    def get_personalized_recommendation(self, user_id):
+        if user_id in self.user_profiles:
+            profile = self.user_profiles[user_id]
+            if profile["preferred_learning_style"] == "visual" and profile["favorite_subject"] == "math":
+                return "We recommend trying out our interactive math simulations!"
+            elif profile["preferred_learning_style"] == "auditory" and profile["favorite_subject"] == "history":
+                return "Explore our history audiobooks for an engaging learning experience."
+            else:
+                return "Discover personalized learning resources based on your profile."
+
+# Example usage:
+ltc = TechConnects()
+ltc.create_user_profile("user1")
+ltc.update_user_profile("user1", "John", "visual", "math")
+recommendation = ltc.get_personalized_recommendation("user1")
+print(recommendation)
